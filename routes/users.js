@@ -1,6 +1,9 @@
 var router = require('express').Router();
 var bcrypt = require('bcryptjs');
 var User = require('../models/user');
+var jqt =require('jsonwebtoken');
+var constants =require('../config/constrants');
+
 
 router.post('/',(req,res)=>{
 	var user= new User({
@@ -10,7 +13,9 @@ router.post('/',(req,res)=>{
 	})
 
 	user.save().then(
+
 		(newuser)=>{
+			var sessionToken = jwt.sign(newuser._id, constants.JWT_SECRETS,{ expireIn:60*60*24 })
 			res.json({
 				user:newuser,
 				message:'success'

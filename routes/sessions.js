@@ -8,7 +8,7 @@ router.post('/',(req,res)=>{
 	//checks user
 	User.findOne({username:req.body.user.username}).then(
 		(user)=>{
-			if (user){	
+			if (user){
 				bcrypt.compare(req.body.user.pwd, user.passhash, (err,matches)=>{
 					if(matches){
 						//returns token
