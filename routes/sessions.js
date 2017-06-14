@@ -1,8 +1,8 @@
-var router= require('express').Router()
-var bcrypt= require('bcryptjs')
-var jwt= require('jsonwebtoken')
-var constants=('../config/constants')
-var User = require('../models/user')
+var router= require('express').Router();
+var bcrypt= require('bcryptjs');
+var jwt= require('jsonwebtoken');
+var constants=('../config/constants');
+var User = require('../models/user');
 
 router.post('/',(req,res)=>{
 	//checks user
@@ -17,26 +17,26 @@ router.post('/',(req,res)=>{
 							user:user,
 							message:'successfully authed',
 							sessionToken:sessionToken
-						})
+						});
 					} else{
 						res.json({
 							user:{},
 							message:'failed to auth',
 							sessionToken:''
-						})
+						});
 					}
-				})
+				});
 			}else{
 				res.json({
 					user:{},
 					message:'failed to auth',
 					sessionToken:''
-				})
+				});
 			}
-		}
+		},
 		(err)=>{
 			//user not found
 			res.josn(err)
 		}
 	)
-})
+});
